@@ -1,0 +1,1231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sanz Payment • Selamat Datang</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', system-ui, sans-serif;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255,70,150,0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(255,70,150,0); }
+            100% { box-shadow: 0 0 0 0 rgba(255,70,150,0); }
+        }
+        
+        body {
+            min-height: 100vh;
+            background: linear-gradient(145deg, #0a0e1a, #1a1f2f);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        /* HALAMAN WELCOME */
+        .welcome-container {
+            width: 100%;
+            max-width: 450px;
+            background: rgba(18, 22, 38, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 50px;
+            padding: 40px 30px;
+            border: 1px solid rgba(255,255,255,0.08);
+            box-shadow: 0 40px 80px -20px black;
+            text-align: center;
+            animation: fadeIn 0.8s ease-out;
+        }
+        
+        .welcome-logo {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #ff4d8c, #b84aff);
+            border-radius: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            font-size: 50px;
+            color: white;
+            box-shadow: 0 20px 40px rgba(255,70,150,0.4);
+            animation: float 4s infinite ease-in-out;
+        }
+        
+        .welcome-title {
+            font-size: 36px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #fff, #ff9ec0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+        }
+        
+        .welcome-sub {
+            color: #8f9bb3;
+            font-size: 16px;
+            margin-bottom: 35px;
+            line-height: 1.6;
+        }
+        
+        .input-group {
+            margin-bottom: 30px;
+            text-align: left;
+        }
+        
+        .input-group label {
+            color: #b5c5e3;
+            font-size: 14px;
+            margin-bottom: 8px;
+            display: block;
+            font-weight: 500;
+        }
+        
+        .input-wrapper {
+            position: relative;
+        }
+        
+        .input-wrapper i {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #ff4d8c;
+            font-size: 20px;
+        }
+        
+        .input-wrapper input {
+            width: 100%;
+            background: rgba(10,14,30,0.7);
+            border: 2px solid #2f3a5c;
+            border-radius: 40px;
+            padding: 18px 20px 18px 55px;
+            color: white;
+            font-size: 18px;
+            outline: none;
+            transition: all 0.3s;
+        }
+        
+        .input-wrapper input:focus {
+            border-color: #ff4d8c;
+            box-shadow: 0 0 0 5px rgba(255,70,150,0.2);
+        }
+        
+        .input-wrapper input::placeholder {
+            color: #47577a;
+            font-size: 16px;
+        }
+        
+        .start-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #ff4d8c, #b84aff);
+            border: none;
+            border-radius: 40px;
+            padding: 18px;
+            color: white;
+            font-weight: 700;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            animation: pulse 2s infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .start-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 30px rgba(255,70,150,0.4);
+            animation: none;
+        }
+        
+        .footer-text {
+            margin-top: 25px;
+            color: #6d7b9c;
+            font-size: 14px;
+        }
+        
+        .footer-text a {
+            color: #ff9ec0;
+            text-decoration: none;
+        }
+        
+        /* HALAMAN PAYMENT */
+        .payment-container {
+            width: 100%;
+            max-width: 480px;
+            background: rgba(18, 22, 38, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 40px;
+            padding: 30px 24px;
+            border: 1px solid rgba(255,255,255,0.05);
+            box-shadow: 0 20px 40px -15px black;
+            animation: fadeIn 0.6s ease-out;
+        }
+        
+        .payment-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .logo-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #ff4d8c, #b84aff);
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            color: white;
+            box-shadow: 0 5px 15px rgba(255,70,150,0.3);
+        }
+        
+        .logo-text h2 {
+            color: white;
+            font-size: 24px;
+        }
+        
+        .logo-text span {
+            color: #8f9bb3;
+            font-size: 12px;
+        }
+        
+        .user-greeting {
+            background: rgba(255,70,150,0.15);
+            padding: 8px 16px;
+            border-radius: 40px;
+            color: #ff9ec0;
+            font-weight: 500;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid rgba(255,70,150,0.3);
+        }
+        
+        .user-greeting i {
+            color: #ff4d8c;
+        }
+        
+        .method-pills {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+        
+        .method-pill {
+            flex: 1;
+            padding: 16px;
+            border-radius: 40px;
+            background: rgba(10,14,28,0.7);
+            border: 1px solid #2f3a5c;
+            color: #9aabcf;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .method-pill:hover {
+            transform: translateY(-2px);
+            border-color: #ff4d8c;
+        }
+        
+        .method-pill.active {
+            background: linear-gradient(145deg, #ff4d8c, #b84aff);
+            color: white;
+            border-color: transparent;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(255,70,150,0.3);
+        }
+        
+        .input-group {
+            margin-bottom: 20px;
+        }
+        
+        .input-group label {
+            color: #b5c5e3;
+            font-size: 14px;
+            margin-bottom: 8px;
+            display: block;
+        }
+        
+        .input-wrapper {
+            position: relative;
+        }
+        
+        .input-wrapper i {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #ff4d8c;
+            font-size: 18px;
+        }
+        
+        .input-wrapper select {
+            width: 100%;
+            background: rgba(10,14,30,0.7);
+            border: 1px solid #2f3a5c;
+            border-radius: 20px;
+            padding: 16px 16px 16px 50px;
+            color: white;
+            font-size: 16px;
+            outline: none;
+            appearance: none;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .input-wrapper select:hover {
+            border-color: #ff4d8c;
+        }
+        
+        .input-wrapper::after {
+            content: '\f078';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            right: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #ff4d8c;
+            font-size: 14px;
+            pointer-events: none;
+        }
+        
+        .payment-info {
+            background: rgba(255,70,150,0.1);
+            border: 1px dashed #ff4d8c;
+            border-radius: 24px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .payment-info-title {
+            color: #ff9ec0;
+            font-size: 13px;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+        
+        .payment-number {
+            font-size: 22px;
+            font-weight: 700;
+            color: white;
+            background: rgba(0,0,0,0.3);
+            padding: 15px;
+            border-radius: 16px;
+            word-break: break-word;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            border: 1px solid rgba(255,70,150,0.3);
+        }
+        
+        .payment-number i {
+            color: #ff4d8c;
+            font-size: 20px;
+        }
+        
+        .payment-name {
+            color: #b5c5e3;
+            font-size: 14px;
+            margin: 10px 0;
+        }
+        
+        .qris-container {
+            background: white;
+            border-radius: 28px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+            border: 2px solid #ff4d8c;
+        }
+        
+        .qris-image {
+            max-width: 100%;
+            margin-bottom: 15px;
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        
+        .qris-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .download-btn {
+            background: linear-gradient(135deg, #00b09b, #96c93d);
+            border: none;
+            padding: 14px 20px;
+            border-radius: 40px;
+            color: white;
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            transition: 0.2s;
+        }
+        
+        .download-btn:hover {
+            opacity: 0.9;
+        }
+        
+        .copy-btn {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid #3f4a6b;
+            padding: 10px 20px;
+            border-radius: 30px;
+            color: white;
+            font-weight: 500;
+            font-size: 14px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.2s;
+        }
+        
+        .copy-btn:hover {
+            background: #ff4d8c;
+            border-color: #ff4d8c;
+        }
+        
+        .pay-button {
+            width: 100%;
+            background: linear-gradient(135deg, #ff4d8c, #b84aff);
+            border: none;
+            border-radius: 30px;
+            padding: 18px;
+            color: white;
+            font-weight: 700;
+            font-size: 18px;
+            cursor: pointer;
+            margin: 20px 0 15px;
+            transition: 0.2s;
+        }
+        
+        .pay-button:hover {
+            opacity: 0.9;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        .footer-link {
+            color: #8d9dc0;
+            text-decoration: none;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        
+        .footer-link:hover {
+            color: #ff4d8c;
+        }
+        
+        /* HALAMAN KONFIRMASI */
+        .confirm-container {
+            width: 100%;
+            max-width: 480px;
+            background: rgba(18, 22, 38, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 40px;
+            padding: 30px 24px;
+            border: 1px solid rgba(255,255,255,0.05);
+            box-shadow: 0 20px 40px -15px black;
+            animation: fadeIn 0.6s ease-out;
+        }
+        
+        .confirm-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .confirm-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #00b09b, #96c93d);
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 40px;
+            color: white;
+            box-shadow: 0 10px 25px rgba(0,176,155,0.4);
+        }
+        
+        .confirm-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 10px;
+        }
+        
+        .confirm-sub {
+            color: #8f9bb3;
+            font-size: 15px;
+        }
+        
+        .confirm-detail {
+            background: rgba(255,255,255,0.03);
+            border-radius: 30px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+        
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #2f3a5c;
+        }
+        
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+        
+        .detail-label {
+            color: #8f9bb3;
+            font-size: 14px;
+        }
+        
+        .detail-value {
+            color: white;
+            font-weight: 600;
+            font-size: 16px;
+        }
+        
+        .contact-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin: 25px 0;
+        }
+        
+        .contact-btn {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 16px 20px;
+            border-radius: 40px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid #2f3a5c;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .contact-btn:hover {
+            transform: translateY(-2px);
+            border-color: #ff4d8c;
+            background: rgba(255,70,150,0.1);
+        }
+        
+        .contact-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+        }
+        
+        .wa-icon {
+            background: linear-gradient(135deg, #25D366, #128C7E);
+        }
+        
+        .tele-icon {
+            background: linear-gradient(135deg, #0088cc, #0088cc);
+        }
+        
+        .email-icon {
+            background: linear-gradient(135deg, #EA4335, #FBBC05);
+        }
+        
+        .contact-info {
+            flex: 1;
+        }
+        
+        .contact-info h4 {
+            font-size: 16px;
+            margin-bottom: 3px;
+        }
+        
+        .contact-info p {
+            font-size: 14px;
+            color: #ff9ec0;
+        }
+        
+        .contact-arrow {
+            color: #ff4d8c;
+            font-size: 20px;
+        }
+        
+        .customer-service {
+            background: rgba(255,70,150,0.1);
+            border-radius: 30px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+            border: 1px dashed #ff4d8c;
+        }
+        
+        .cs-number {
+            font-size: 24px;
+            font-weight: 700;
+            color: white;
+            margin: 10px 0;
+            letter-spacing: 1px;
+        }
+        
+        .cs-number i {
+            color: #ff4d8c;
+            margin-right: 10px;
+        }
+        
+        .back-btn {
+            width: 100%;
+            background: transparent;
+            border: 1px solid #2f3a5c;
+            border-radius: 30px;
+            padding: 16px;
+            color: white;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.2s;
+            margin-top: 15px;
+        }
+        
+        .back-btn:hover {
+            border-color: #ff4d8c;
+            background: rgba(255,70,150,0.1);
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(5px);
+            z-index: 99999;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .modal.show {
+            display: flex;
+        }
+        
+        .modal-content {
+            background: #1a1f30;
+            border-radius: 40px;
+            max-width: 400px;
+            width: 100%;
+            max-height: 80vh;
+            overflow-y: auto;
+            border: 1px solid #ff4d8c;
+        }
+        
+        .modal-header {
+            padding: 20px 20px 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #2f3a5c;
+        }
+        
+        .modal-header h3 {
+            color: white;
+            font-size: 20px;
+        }
+        
+        .modal-header i {
+            color: #ff4d8c;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        .modal-body {
+            padding: 20px;
+            color: #e0e0e0;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        .modal-body h4 {
+            color: #ff4d8c;
+            margin: 15px 0 8px;
+        }
+        
+        .modal-body ul {
+            padding-left: 20px;
+            margin-bottom: 12px;
+        }
+        
+        .toast-msg {
+            background: #1f253e;
+            border-left: 4px solid #ff4d8c;
+            padding: 12px 20px;
+            border-radius: 30px;
+            color: white;
+            position: fixed;
+            bottom: 20px; right: 20px;
+            transform: translateX(150%);
+            transition: 0.3s;
+            z-index: 100000;
+        }
+        
+        .toast-msg.show {
+            transform: translateX(0);
+        }
+        
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- MODALS -->
+    <div class="modal" id="modalKeamanan">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-shield-alt" style="color: #ff4d8c;"></i> Keamanan</h3>
+                <i class="fas fa-times" onclick="tutupModal('modalKeamanan')"></i>
+            </div>
+            <div class="modal-body">
+                <h4>🔒 Enkripsi End-to-End</h4>
+                <p>Semua data transaksi Anda dilindungi dengan enkripsi AES-256, standar keamanan tertinggi yang digunakan oleh perbankan dunia.</p>
+                
+                <h4>🛡️ Verifikasi Dua Langkah (2FA)</h4>
+                <p>Setiap pembayaran memerlukan konfirmasi melalui perangkat terdaftar. Kami mendukung Google Authenticator dan SMS OTP.</p>
+                
+                <h4>🔐 Keamanan Data Pribadi</h4>
+                <p>Kami tidak menyimpan informasi sensitif seperti PIN atau password. Data Anda hanya digunakan untuk memproses transaksi.</p>
+                
+                <h4>✅ Sertifikasi Keamanan</h4>
+                <p>Sanz Payment telah tersertifikasi ISO 27001 dan mematuhi standar keamanan data internasional serta regulasi Bank Indonesia.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="modalSyarat">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-file-contract" style="color: #ff4d8c;"></i> Syarat & Ketentuan</h3>
+                <i class="fas fa-times" onclick="tutupModal('modalSyarat')"></i>
+            </div>
+            <div class="modal-body">
+                <h4>📋 Ketentuan Penggunaan</h4>
+                <ul>
+                    <li><strong>1. Verifikasi Identitas:</strong> Pengguna wajib memiliki akun terverifikasi.</li>
+                    <li><strong>2. Batasan Transaksi:</strong> Maksimal transaksi harian Rp 20.000.000.</li>
+                    <li><strong>3. Biaya Layanan:</strong> Gratis transfer antar pengguna Sanz Payment.</li>
+                    <li><strong>4. Pembatalan:</strong> Transaksi yang sudah dikonfirmasi tidak dapat dibatalkan.</li>
+                    <li><strong>5. Keamanan Akun:</strong> Pengguna bertanggung jawab atas keamanan akun.</li>
+                </ul>
+                
+                <h4>⚖️ Kebijakan Privasi</h4>
+                <p>Data pribadi hanya digunakan untuk pemrosesan transaksi, pencegahan fraud, dan peningkatan layanan.</p>
+                
+                <p style="margin-top: 15px; font-style: italic;">Terakhir diperbarui: 1 Januari 2026</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="modalBantuan">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-question-circle" style="color: #ff4d8c;"></i> Bantuan</h3>
+                <i class="fas fa-times" onclick="tutupModal('modalBantuan')"></i>
+            </div>
+            <div class="modal-body">
+                <h4>📞 Layanan Pelanggan</h4>
+                <p><i class="fas fa-phone-alt" style="color: #ff4d8c;"></i> 0857-1890-6011 (24 jam)</p>
+                <p><i class="fas fa-envelope" style="color: #ff4d8c;"></i> sanzajaa0101@gmail.com</p>
+                <p><i class="fas fa-clock" style="color: #ff4d8c;"></i> 24 jam non-stop</p>
+                
+                <h4 style="margin-top: 20px;">❓ Pertanyaan Umum</h4>
+                
+                <p><strong>Q: Cara transfer ke bank lain?</strong><br>
+                A: Pilih "Bank", lalu pilih bank tujuan dan ikuti instruksi.</p>
+                
+                <p><strong>Q: Ada biaya admin?</strong><br>
+                A: Transfer antar pengguna gratis. Transfer ke bank lain Rp 2.500 - Rp 6.500.</p>
+                
+                <p><strong>Q: Transfer gagal?</strong><br>
+                A: Dana kembali dalam 1x24 jam. Hubungi CS jika lebih.</p>
+                
+                <p><strong>Q: Amankah QRIS?</strong><br>
+                A: Sangat aman, terdaftar resmi dan standar nasional.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast-msg" id="toastMsg">
+        <i class="fas fa-bolt"></i> <span id="toastText">Siap!</span>
+    </div>
+
+    <!-- HALAMAN WELCOME -->
+    <div id="welcomePage" class="welcome-container">
+        <div class="welcome-logo">
+            <i class="fas fa-bolt"></i>
+        </div>
+        <h1 class="welcome-title">Sanz Payment</h1>
+        <p class="welcome-sub">Solusi pembayaran digital aman, cepat, dan terpercaya untuk kebutuhan finansial Anda.</p>
+        
+        <div class="input-group">
+            <label><i class="fas fa-user" style="margin-right: 5px;"></i> Masukkan Nama Anda</label>
+            <div class="input-wrapper">
+                <i class="fas fa-user-circle"></i>
+                <input type="text" id="usernameInput" placeholder="Contoh: Budi Santoso" autocomplete="off">
+            </div>
+        </div>
+        
+        <button class="start-btn" id="startBtn">
+            <span>Mulai Transaksi</span>
+            <i class="fas fa-arrow-right"></i>
+        </button>
+        
+        <p class="footer-text">
+            Dengan melanjutkan, Anda menyetujui <a href="#" onclick="bukaModal('modalSyarat'); return false;">Syarat & Ketentuan</a> dan <a href="#" onclick="bukaModal('modalKeamanan'); return false;">Kebijakan Privasi</a>
+        </p>
+    </div>
+
+    <!-- HALAMAN PAYMENT - DENGAN NOMOR ASLI! -->
+    <div id="paymentPage" class="payment-container hidden">
+        <div class="payment-header">
+            <div class="logo-area">
+                <div class="logo-icon"><i class="fas fa-bolt"></i></div>
+                <div class="logo-text">
+                    <h2>Sanz Payment</h2>
+                    <span>by Sanz</span>
+                </div>
+            </div>
+            <div class="user-greeting" id="userGreeting">
+                <i class="fas fa-user"></i> <span id="displayName">User</span>
+            </div>
+        </div>
+
+        <div class="method-pills">
+            <div class="method-pill active" id="pillEwallet"><i class="fas fa-wallet"></i> E-Wallet</div>
+            <div class="method-pill" id="pillBank"><i class="fas fa-university"></i> Bank</div>
+        </div>
+
+        <div id="formEwallet">
+            <div class="input-group">
+                <label>Pilih E-Wallet</label>
+                <div class="input-wrapper">
+                    <i class="fas fa-mobile-alt"></i>
+                    <select id="ewalletSelect">
+                        <option value="DANA">DANA</option>
+                        <option value="ShopeePay">ShopeePay</option>
+                        <option value="GoPay">GoPay</option>
+                        <option value="QRIS">QRIS</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div id="ewalletContent">
+                <!-- DANA - NOMOR ASLI -->
+                <div class="payment-info" id="ewalletNormal" style="display: block;">
+                    <div class="payment-info-title">NOMOR PEMBAYARAN</div>
+                    <div class="payment-number" id="ewalletNumber">
+                        <i class="fas fa-phone-alt"></i> 
+                        <span id="ewalletNumberSpan">0889-7566-5148</span>
+                    </div>
+                    <div class="payment-name" id="ewalletName">a/n MIFxxxxx IxxxN MUxxxxxN (DANA)</div>
+                    <button class="copy-btn" id="copyEwallet"><i class="fas fa-copy"></i> Salin Nomor</button>
+                </div>
+                
+                <!-- QRIS Content -->
+                <div class="qris-container" id="qrisContent" style="display: none;">
+                    <div class="qris-image">
+                        <img src="https://files.catbox.moe/hskc9a.jpg" alt="QRIS SANZ STORE">
+                    </div>
+                    <button class="download-btn" id="downloadQrisBtn">
+                        <i class="fas fa-download"></i> Download QRIS
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="formBank" style="display: none;">
+            <div class="input-group">
+                <label>Pilih Bank</label>
+                <div class="input-wrapper">
+                    <i class="fas fa-building"></i>
+                    <select id="bankSelect">
+                        <option value="SeaBank">SeaBank</option>
+                        <option value="AlloBank">AlloBank</option>
+                    </select>
+                </div>
+            </div>
+            <div class="payment-info">
+                <div class="payment-info-title">NOMOR REKENING</div>
+                <div class="payment-number" id="bankNumber">
+                    <i class="fas fa-credit-card"></i> 
+                    <span id="bankNumberSpan">9012-6978-2289</span>
+                </div>
+                <div class="payment-name" id="bankName">a/n TRI MULxxxxx (SeaBank)</div>
+                <button class="copy-btn" id="copyBank"><i class="fas fa-copy"></i> Salin Nomor</button>
+            </div>
+        </div>
+
+        <button class="pay-button" id="confirmBtn">KONFIRMASI PEMBAYARAN</button>
+
+        <div class="footer-links">
+            <a class="footer-link" onclick="bukaModal('modalKeamanan')">
+                <i class="fas fa-shield-alt"></i> Keamanan
+            </a>
+            <a class="footer-link" onclick="bukaModal('modalSyarat')">
+                <i class="fas fa-file-contract"></i> Syarat
+            </a>
+            <a class="footer-link" onclick="bukaModal('modalBantuan')">
+                <i class="fas fa-question-circle"></i> Bantuan
+            </a>
+        </div>
+    </div>
+
+    <!-- HALAMAN KONFIRMASI -->
+    <div id="confirmPage" class="confirm-container hidden">
+        <div class="confirm-header">
+            <div class="confirm-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h2 class="confirm-title">Konfirmasi Pembayaran</h2>
+            <p class="confirm-sub">Silakan kirim bukti pembayaran ke admin</p>
+        </div>
+
+        <div class="confirm-detail">
+            <div class="detail-row">
+                <span class="detail-label">Nama</span>
+                <span class="detail-value" id="confirmName">User</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Metode</span>
+                <span class="detail-value" id="confirmMethod">DANA</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Nomor Tujuan</span>
+                <span class="detail-value" id="confirmNumber">0889-7566-5148</span>
+            </div>
+            <div class="detail-row">
+                <span class="detail-label">Status</span>
+                <span class="detail-value" style="color: #ffd966;">Menunggu Konfirmasi</span>
+            </div>
+        </div>
+
+        <!-- CONTACT BUTTONS -->
+        <div class="contact-buttons">
+            <a href="https://wa.me/6285718906011" target="_blank" class="contact-btn">
+                <div class="contact-icon wa-icon"><i class="fab fa-whatsapp"></i></div>
+                <div class="contact-info">
+                    <h4>WhatsApp Admin</h4>
+                    <p>0857-1890-6011</p>
+                </div>
+                <i class="fas fa-arrow-right contact-arrow"></i>
+            </a>
+
+            <a href="https://t.me/SanzNotDev" target="_blank" class="contact-btn">
+                <div class="contact-icon tele-icon"><i class="fab fa-telegram-plane"></i></div>
+                <div class="contact-info">
+                    <h4>Telegram Admin</h4>
+                    <p>@SanzNotDev</p>
+                </div>
+                <i class="fas fa-arrow-right contact-arrow"></i>
+            </a>
+
+            <a href="mailto:sanzajaa0101@gmail.com" class="contact-btn">
+                <div class="contact-icon email-icon"><i class="fas fa-envelope"></i></div>
+                <div class="contact-info">
+                    <h4>Email Support</h4>
+                    <p>sanzajaa0101@gmail.com</p>
+                </div>
+                <i class="fas fa-arrow-right contact-arrow"></i>
+            </a>
+        </div>
+
+        <!-- CUSTOMER SERVICE -->
+        <div class="customer-service">
+            <i class="fas fa-headset" style="color: #ff4d8c; font-size: 24px;"></i>
+            <p style="color: #ff9ec0; margin-top: 10px;">Layanan Pelanggan 24 Jam</p>
+            <div class="cs-number">
+                <i class="fas fa-phone-alt"></i> 0857-1890-6011
+            </div>
+            <p style="color: #8f9bb3; font-size: 13px;">(Sama dengan WhatsApp)</p>
+        </div>
+
+        <button class="back-btn" id="backToPaymentBtn">
+            <i class="fas fa-arrow-left" style="margin-right: 8px;"></i> Kembali ke Pembayaran
+        </button>
+    </div>
+
+    <script>
+        // ========== DATA NOMOR ASLI - SESUAI PERMINTAAN LO ==========
+        const paymentData = {
+            ewallet: {
+                DANA: { 
+                    number: '0889-7566-5148', 
+                    name: 'a/n MIFxxxxx IxxxN MUxxxxxN (DANA)' 
+                },
+                ShopeePay: { 
+                    number: '0821-1196-3889', 
+                    name: 'a/n TRI MULxxxxx (ShopeePay)' 
+                },
+                GoPay: { 
+                    number: '0821-1196-3889', 
+                    name: 'a/n IHSAN (GoPay)' 
+                }
+            },
+            bank: {
+                SeaBank: { 
+                    number: '9012-6978-2289', 
+                    name: 'a/n TRI MULxxxxx (SeaBank)' 
+                },
+                AlloBank: { 
+                    number: '0821-1196-3889', 
+                    name: 'a/n FAJxxx DWI YUNxxxxxxx (AlloBank)' 
+                }
+            }
+        };
+
+        // ELEMENTS
+        const pillEwallet = document.getElementById('pillEwallet');
+        const pillBank = document.getElementById('pillBank');
+        const formEwallet = document.getElementById('formEwallet');
+        const formBank = document.getElementById('formBank');
+        const ewalletSelect = document.getElementById('ewalletSelect');
+        const bankSelect = document.getElementById('bankSelect');
+        const ewalletNormal = document.getElementById('ewalletNormal');
+        const qrisContent = document.getElementById('qrisContent');
+        const ewalletNumberSpan = document.getElementById('ewalletNumberSpan');
+        const ewalletName = document.getElementById('ewalletName');
+        const bankNumberSpan = document.getElementById('bankNumberSpan');
+        const bankName = document.getElementById('bankName');
+        const confirmName = document.getElementById('confirmName');
+        const confirmMethod = document.getElementById('confirmMethod');
+        const confirmNumber = document.getElementById('confirmNumber');
+
+        function updateEwallet() {
+            const selected = ewalletSelect.value;
+            
+            if (selected === 'QRIS') {
+                ewalletNormal.style.display = 'none';
+                qrisContent.style.display = 'block';
+            } else {
+                ewalletNormal.style.display = 'block';
+                qrisContent.style.display = 'none';
+                
+                const data = paymentData.ewallet[selected];
+                ewalletNumberSpan.innerText = data.number;
+                ewalletName.innerText = data.name;
+            }
+        }
+
+        function updateBank() {
+            const selected = bankSelect.value;
+            const data = paymentData.bank[selected];
+            bankNumberSpan.innerText = data.number;
+            bankName.innerText = data.name;
+        }
+
+        // EVENT LISTENERS - LANGSUNG PAKE NOMOR ASLI
+        pillEwallet.addEventListener('click', () => {
+            pillEwallet.classList.add('active');
+            pillBank.classList.remove('active');
+            formBank.style.display = 'none';
+            formEwallet.style.display = 'block';
+            updateEwallet();
+        });
+
+        pillBank.addEventListener('click', () => {
+            pillBank.classList.add('active');
+            pillEwallet.classList.remove('active');
+            formEwallet.style.display = 'none';
+            formBank.style.display = 'block';
+            updateBank();
+        });
+
+        ewalletSelect.addEventListener('change', updateEwallet);
+        bankSelect.addEventListener('change', updateBank);
+
+        // COPY BUTTONS
+        document.getElementById('copyEwallet').addEventListener('click', () => {
+            const number = ewalletNumberSpan.innerText.replace(/\D/g, '');
+            navigator.clipboard.writeText(number);
+            showToast('Nomor e-wallet disalin');
+        });
+
+        document.getElementById('copyBank').addEventListener('click', () => {
+            const number = bankNumberSpan.innerText.replace(/\D/g, '');
+            navigator.clipboard.writeText(number);
+            showToast('Nomor rekening disalin');
+        });
+
+        document.getElementById('downloadQrisBtn').addEventListener('click', () => {
+            showToast('Mengalihkan ke MediaFire...');
+            window.open('https://www.mediafire.com/view/fyxk7304skzek4g/Qris_Sanz_STR/file', '_blank');
+        });
+
+        // TOMBOL KONFIRMASI - PAKE NOMOR ASLI
+        document.getElementById('confirmBtn').addEventListener('click', function() {
+            const userName = localStorage.getItem('sanzpayment_username') || 'User';
+            const activeMethod = pillEwallet.classList.contains('active') ? 'e-wallet' : 'bank';
+            let methodName, numberValue;
+            
+            if (activeMethod === 'e-wallet') {
+                const selected = ewalletSelect.value;
+                if (selected === 'QRIS') {
+                    methodName = 'QRIS';
+                    numberValue = 'Scan QRIS';
+                } else {
+                    methodName = selected;
+                    numberValue = paymentData.ewallet[selected].number;
+                }
+            } else {
+                const selected = bankSelect.value;
+                methodName = selected;
+                numberValue = paymentData.bank[selected].number;
+            }
+            
+            confirmName.innerText = userName;
+            confirmMethod.innerText = methodName;
+            confirmNumber.innerText = numberValue;
+            
+            paymentPage.style.animation = 'fadeIn 0.3s reverse';
+            setTimeout(() => {
+                paymentPage.classList.add('hidden');
+                document.getElementById('confirmPage').classList.remove('hidden');
+                document.getElementById('confirmPage').style.animation = 'fadeIn 0.6s ease-out';
+                showToast('Silakan kirim bukti ke admin');
+            }, 300);
+        });
+
+        // KEMBALI KE PAYMENT PAGE
+        document.getElementById('backToPaymentBtn').addEventListener('click', function() {
+            document.getElementById('confirmPage').style.animation = 'fadeIn 0.3s reverse';
+            setTimeout(() => {
+                document.getElementById('confirmPage').classList.add('hidden');
+                paymentPage.classList.remove('hidden');
+                paymentPage.style.animation = 'fadeIn 0.6s ease-out';
+            }, 300);
+        });
+
+        // FUNGSI MODAL
+        function bukaModal(id) {
+            document.getElementById(id).classList.add('show');
+        }
+
+        function tutupModal(id) {
+            document.getElementById(id).classList.remove('show');
+        }
+
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.classList.remove('show');
+            }
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toastMsg');
+            document.getElementById('toastText').innerText = msg;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 2000);
+        }
+
+        // WELCOME PAGE FUNCTIONS
+        const welcomePage = document.getElementById('welcomePage');
+        const paymentPage = document.getElementById('paymentPage');
+        const usernameInput = document.getElementById('usernameInput');
+        const startBtn = document.getElementById('startBtn');
+        const displayName = document.getElementById('displayName');
+
+        startBtn.addEventListener('click', function() {
+            let userName = usernameInput.value.trim();
+            if (userName === '') userName = 'User';
+            
+            localStorage.setItem('sanzpayment_username', userName);
+            displayName.innerText = userName;
+            
+            welcomePage.style.animation = 'fadeIn 0.3s reverse';
+            setTimeout(() => {
+                welcomePage.classList.add('hidden');
+                paymentPage.classList.remove('hidden');
+                paymentPage.style.animation = 'fadeIn 0.6s ease-out';
+                
+                // Set default ke DANA
+                ewalletSelect.value = 'DANA';
+                updateEwallet();
+                bankSelect.value = 'SeaBank';
+                updateBank();
+                
+                showToast(`Selamat datang, ${userName}!`);
+            }, 300);
+        });
+
+        usernameInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') startBtn.click();
+        });
+
+        // LOAD SAVED USERNAME
+        window.onload = function() {
+            const savedName = localStorage.getItem('sanzpayment_username');
+            if (savedName) usernameInput.value = savedName;
+            showToast('Selamat datang di Sanz Payment');
+        }
+    </script>
+</body>
+</html>
